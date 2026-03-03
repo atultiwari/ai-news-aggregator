@@ -318,9 +318,6 @@ async function main(): Promise<number> {
       source_count: new Set(itemsAiDedup.map((i) => `${i.site_id}::${i.source}`)).size,
       site_stats: Array.from(siteStat.values()).sort((a, b) => b.count - a.count),
       items: itemsAiDedup,
-      items_ai: itemsAiDedup,
-      items_all_raw: itemsAll,
-      items_all: itemsAllDedup,
     };
   }
 

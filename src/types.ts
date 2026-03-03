@@ -77,9 +77,6 @@ export interface LatestPayload {
   source_count: number;
   site_stats: SiteStat[];
   items: ArchiveItem[];
-  items_ai: ArchiveItem[];
-  items_all_raw: ArchiveItem[];
-  items_all: ArchiveItem[];
 }
 
 export interface ArchivePayload {
