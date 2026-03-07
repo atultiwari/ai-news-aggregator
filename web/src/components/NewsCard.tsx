@@ -15,7 +15,7 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ item, index, isVisited = false, isFavorite = false, onVisit, onToggleFavorite }: NewsCardProps) {
-  const displayTitle = item.title_en || item.title || item.title_bilingual || item.title_zh
+  const displayTitle = item.title_en || item.title || item.title_bilingual || item.title_zh || ''
 
   const handleClick = () => {
     Analytics.trackNewsClick(displayTitle, item.source, item.site_id)
