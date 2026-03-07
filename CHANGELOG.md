@@ -1,117 +1,136 @@
 # Changelog
 
+## [2.0.0] - 2026-03-07
+
+### Major Changes - Healthcare Fork
+
+#### Healthcare Specialty Tags
+- **21 healthcare specialty tags**: Pathology, Radiology, Oncology, Surgery, Medicine, Cardiology, Neurology, Microbiology, Biochemistry, Pharmacology, Genomics, Dermatology, Pediatrics, Ophthalmology, Orthopedics, Psychiatry, OB/GYN, Emergency Medicine, Public Health, Digital Health, AI & Technology
+- **Specialty filter component**: Multi-select pill UI in the filter bar
+- **Card badges**: Up to 3 specialty tags displayed on each news card
+- **Keyword matching**: Cached client-side matching via `healthcareTags.ts`
+
+#### Expanded Medical Journal Sources (68 journals)
+- **General Medicine** (12): NEJM, NEJM AI, The Lancet, Lancet Digital Health, BMJ, JAMA, JAMA Network Open, Annals of Internal Medicine, Nature Medicine, Nature Digital Medicine, BMC Medicine, PLOS Medicine
+- **Oncology** (6): Lancet Oncology, JAMA Oncology, Nature Cancer, Cancer Research, JCO, British Journal of Cancer
+- **Cardiology** (5): JACC, European Heart Journal, Circulation, Nature Cardiovascular Research
+- **Neurology** (5): Lancet Neurology, JAMA Neurology, Nature Neuroscience, Brain, Annals of Neurology
+- **Surgery** (4): JAMA Surgery, Annals of Surgery, British Journal of Surgery
+- **Radiology** (4): Radiology, Radiology: AI, European Radiology, AJR
+- **Pathology & Lab** (8): J Pathology Informatics, Modern Pathology, AJCP, Clinical Chemistry, JCLA, Diagnostic Pathology, J Pathology, Archives of Pathology & Lab Medicine
+- **Microbiology** (4): Lancet Infectious Diseases, Clinical Microbiology Reviews, Nature Microbiology, J Clinical Microbiology
+- **Ophthalmology** (3): Ophthalmology, JAMA Ophthalmology, BJO
+- **Pediatrics** (3): JAMA Pediatrics, Lancet Child & Adolescent Health, Pediatrics
+- **Psychiatry** (3): JAMA Psychiatry, Lancet Psychiatry, Nature Mental Health
+- **Dermatology** (2): JAMA Dermatology, British Journal of Dermatology
+- **Genomics** (4): Nature Biotechnology, Nature Genetics, Genome Biology, Genome Medicine
+- **Pharmacology** (2): Nature Reviews Drug Discovery, Clinical Pharmacology & Therapeutics
+- **Public Health** (3): Lancet Public Health, Lancet Global Health, BMJ Global Health
+- **Medical Informatics** (3): BMC Medical Informatics, J Biomedical Informatics, JAMIA
+
+#### Broadened Keyword Filter
+- Added 100+ clinical and specialty terms to ensure journal articles are not filtered out
+- Terms cover: clinical, patient, diagnosis, treatment, oncology, cardiac, neurological, surgical, infectious disease, etc.
+
+#### Documentation
+- Replaced Chinese `推荐公众号.md` with English `recommended-sources.md`
+- Rewrote README in English with healthcare focus
+- Added author info: Dr. Atul Tiwari
+- Added credits to original author (SuYxh)
+- Rewrote TECH_SPEC.md in English
+- Rewrote CHANGELOG.md in English
+
+---
+
 ## [1.2.1] - 2026-03-01
 
-### 新增功能
+### Added
 
-#### 微信公众号数据源
-- **新增微信公众号平台**：支持抓取精选微信公众号的最新文章
-- **52个优质订阅源**：涵盖 AI、科技媒体、技术开发、财经投资、个人博主、产品商业等分类
-  - AI 类：机器之心、量子位、新智元、PaperWeekly、AI前线等
-  - 科技媒体类：晚点LatePost、36氪、虎嗅、极客公园、少数派等
-  - 技术开发类：InfoQ、腾讯技术工程、阿里云开发者、GitHubDaily等
-  - 财经投资类：华尔街见闻、财经杂志、经纬创投、红杉汇等
-  - 个人博主类：caoz的梦呓、L先生说、槽边往事、刘润等
-  - 产品商业类：人人都是产品经理、互联网怪盗团、FounderPark等
-- **数据获取**：通过第三方 RSS 服务 (decemberpei.cyou) 获取
-- **并发优化**：使用 p-limit 控制并发数为 10，平衡性能与稳定性
+#### WeChat Public Account Sources
+- **WeChat platform support**: Fetch articles from selected WeChat official accounts
+- **52 subscription sources**: Covering AI, tech media, development, finance, and bloggers
+- **Data source**: Third-party RSS service (decemberpei.cyou)
+- **Concurrency**: p-limit set to 10 for balanced performance
 
-### 技术改进
-- 新增 `WechatRssFetcher` 类，实现微信公众号 RSS 抓取
-- 新增测试脚本 `test/test-wechat-rss.ts`
+### Technical
+- New `WechatRssFetcher` class for WeChat RSS fetching
+- New test script `test/test-wechat-rss.ts`
 
 ---
 
 ## [1.2.0] - 2026-03-01
 
-### 新增功能
+### Added
 
-#### 时间切换加载优化
-- **预加载机制**：首次加载 24h 数据后，自动在后台预加载 7d 数据，切换时瞬间呈现
-- **切换状态优化**：区分「首次加载」和「切换加载」两种状态
-  - 首次加载：显示骨架屏
-  - 切换加载：保留旧数据可见，显示顶部悬浮提示
-- **按钮加载状态**：时间切换按钮在加载时显示 spinner 图标并禁用
-- **顶部加载提示**：切换时显示「正在加载 X 天数据...」悬浮提示条
+#### Time Range Switching Optimization
+- **Preloading**: After loading 24h data, 7d data auto-preloads in background
+- **Switching states**: Differentiated "initial load" (skeleton screen) vs "switching" (overlay)
+- **Button loading state**: Spinner icon and disabled state during loading
+- **Top loading indicator**: "Loading X-day data..." floating notification
 
-### 技术改进
-- 新增 `isSwitching` 状态，区分首次加载和切换加载
-- 新增 `SwitchingOverlay` 组件，显示切换时的加载提示
-- 使用 `AbortController` 处理请求取消，解决 React StrictMode 下的重复请求问题
-- 使用 `useRef` 缓存预加载数据，避免不必要的重渲染
+### Technical
+- New `isSwitching` state to distinguish initial load from switching
+- New `SwitchingOverlay` component for switching feedback
+- `AbortController` for request cancellation (React StrictMode compatibility)
+- `useRef` for cached preloaded data
 
 ---
 
 ## [1.1.0] - 2026-02-28
 
-### 新增功能
+### Added
 
-#### 阅读历史功能优化
-- **文章标题展示**：阅读历史弹窗现在显示文章的真实标题，优先级为 `title_zh` > `title_en` > `title_bilingual`，让历史记录更有意义
-- **清空确认弹窗**：点击"清空"按钮时，新增确认弹窗，告知用户清空操作的影响（删除记录数量、已读标记移除、无法恢复）
-- **完整时间显示**：阅读时间改为完整的年月日时分秒格式，如 `2026年02月28日 21:17:12 阅读`
+#### Reading History
+- Article titles displayed in history modal (priority: `title_zh` > `title_en` > `title_bilingual`)
+- Clear confirmation dialog with impact details
+- Full datetime format for reading timestamps
 
-#### UI/UX 改进
-- **移除 Header 已读计数徽章**：简化 Header 界面，历史按钮不再显示数字徽章
-- **阅读历史布局优化**：链接 URL 和阅读时间采用两端对齐布局，时间与外链图标作为一组显示
+#### UI/UX Improvements
+- Removed header read-count badge for cleaner interface
+- Improved reading history layout with aligned timestamps
 
-#### 阅读追踪功能
-- **已读状态追踪**：点击文章后自动标记为已读，卡片显示"已读"标签，方便区分已阅读内容
-- **阅读历史记录**：记录所有阅读过的文章，支持查看历史、清空记录等操作
+#### Read Tracking
+- Auto-mark articles as read on click with "Read" badge on cards
+- Full reading history recording with clear/export support
 
-#### 收藏功能
-- **文章收藏**：在新闻卡片上点击星标按钮即可收藏/取消收藏文章
-- **收藏列表**：Header 新增收藏入口，点击打开收藏列表弹窗
-- **收藏管理**：支持单条取消收藏、清空全部收藏（带确认弹窗）
-- **收藏时间显示**：完整的年月日时分秒格式，如 `2026年02月28日 21:17:12 收藏`
-- **本地持久化**：收藏数据存储在 localStorage，最多保留 500 条
+#### Favorites
+- Star button on news cards for bookmarking
+- Favorites modal with list view
+- Single/bulk unfavorite with confirmation
+- localStorage persistence (max 500 items)
 
-#### 数据导出功能
-- **收藏导出**：在收藏列表弹窗中点击"导出"按钮，可将收藏数据导出为 JSON 文件
-- **阅读历史导出**：在阅读历史弹窗中点击"导出"按钮，可将阅读历史导出为 JSON 文件
-- **导出格式**：包含 URL、标题、时间戳、格式化时间等完整信息
+#### Data Export
+- Export favorites as JSON
+- Export reading history as JSON
+- Includes URL, title, timestamp, and formatted time
 
-#### YouTube 数据源
-- **新增 YouTube 平台**：支持抓取 YouTube 博主的最新视频
-- **内置博主频道**：
-  - Peter Yang - AI 实用教程和访谈
-  - Lenny's Podcast - 产品和创业访谈
-  - 20VC - 风险投资和创业播客
-- **数据获取**：通过 YouTube RSS feed 免费获取，无需 API Key
-- **丰富的元数据**：包含视频 ID、缩略图、观看次数等信息
+#### YouTube Source
+- YouTube platform support with RSS feeds
+- Built-in channels: Peter Yang, Lenny's Podcast, 20VC
 
-#### 新智元数据源
-- **新增新智元平台**：国内领先的 AI 资讯媒体
-- **数据获取**：通过 WordPress REST API 获取最新文章
-- **更新频率**：每天多篇深度 AI 报道
+#### Xinzhiyuan Source
+- Chinese AI media platform via WordPress REST API
 
-#### NewsNow 数据源时间优化
-- **精确时间获取**：通过调用原始平台 API 获取文章的真实发布时间
-  - HackerNews：通过 Firebase API 获取精确发布时间
-  - GitHub：通过 GitHub API 获取仓库最后推送时间
-  - 掘金(juejin)：解析雪花 ID 提取发布时间
-  - 少数派(sspai)：通过 RSS feed 获取发布时间
-  - 36kr：使用 `extra.date` 字段
-- **智能兜底机制**：无法获取精确时间时，使用数据块更新时间作为兜底
-- **并发请求优化**：使用 `p-limit` 控制并发数，平衡性能与稳定性
+#### NewsNow Time Optimization
+- Precise timestamps from original platform APIs (HackerNews, GitHub, etc.)
+- Fallback to block update time when precise time unavailable
+- Concurrent request optimization with p-limit
 
-### 技术改进
-- 新增 `useVisitedLinks` hook，管理已读状态和阅读历史
-- 新增 `useFavorites` hook，管理收藏状态和收藏列表
-- 新增 `exportToJson` 工具函数，支持导出数据为 JSON 文件
-- 添加数据迁移逻辑，兼容旧版 localStorage 数据格式
-- 新增 `ConfirmDialog` 组件用于确认操作
-- 新增 `ReadingHistoryModal` 组件展示阅读历史
-- 新增 `FavoritesModal` 组件展示收藏列表
+### Technical
+- New `useVisitedLinks` hook for read state management
+- New `useFavorites` hook for favorites management
+- New `exportToJson` utility
+- Data migration for legacy localStorage format
+- New `ConfirmDialog`, `ReadingHistoryModal`, `FavoritesModal` components
 
 ---
 
 ## [1.0.0] - 2026-02-21
 
-### 功能
-- AI 资讯聚合展示
-- 多平台数据源支持
-- 24小时/7天时间范围切换
-- 平台和订阅源筛选
-- 搜索功能
-- 深色/浅色主题切换
+### Features
+- AI news aggregation and display
+- Multi-platform data source support
+- 24h / 7-day time range switching
+- Platform and source filtering
+- Full-text search
+- Dark / light theme toggle
