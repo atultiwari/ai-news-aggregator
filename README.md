@@ -8,6 +8,8 @@
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen?logo=node.js)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?logo=typescript)](https://www.typescriptlang.org/)
 
+[🌐 Live Demo](https://atultiwari.github.io/ai-news-aggregator/) · [📝 Changelog](./CHANGELOG.md) · [📡 Sources](./recommended-sources.md)
+
 </div>
 
 ---
@@ -230,6 +232,12 @@ ai-news-aggregator/
 **Dr. Atul Tiwari**
 - 📧 [atultiwari.in@gmail.com](mailto:atultiwari.in@gmail.com)
 - 🌐 [https://atultiwari.in](https://atultiwari.in)
+
+---
+
+## 🙏 Credits
+
+Adapted from the [AI News Aggregator](https://github.com/SuYxh/ai-news-aggregator) by **[SuYxh](https://github.com/SuYxh)**. The original project is a multi-source AI news aggregator with Chinese-language support. This fork re-focuses it on **AI in Healthcare, Pathology, and Laboratory Medicine** with English-language UI, healthcare specialty tagging, and curated medical/scientific data sources.
 
 ---
 
