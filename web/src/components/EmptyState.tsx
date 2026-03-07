@@ -7,10 +7,10 @@ export function EmptyState() {
         <SearchX className="w-8 h-8 text-slate-400" />
       </div>
       <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
-        没有找到相关资讯
+        No matching articles found
       </h3>
       <p className="text-slate-500 dark:text-slate-400">
-        尝试调整筛选条件或搜索关键词
+        Try adjusting your filters or search keywords
       </p>
     </div>
   )

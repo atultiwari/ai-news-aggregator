@@ -2,6 +2,8 @@ import { Search } from 'lucide-react'
 import type { SiteStat } from '../types'
 import type { SourceStat } from '../hooks/useNewsData'
 import { SiteFilters } from './SiteFilters'
+import { SpecialtyFilter } from './SpecialtyFilter'
+import type { SpecialtyTagStat } from './SpecialtyFilter'
 
 interface FilterBarProps {
   siteStats: SiteStat[]
@@ -12,6 +14,9 @@ interface FilterBarProps {
   onSourceChange: (source: string) => void
   searchQuery: string
   onSearchChange: (query: string) => void
+  specialtyStats: SpecialtyTagStat[]
+  selectedSpecialties: string[]
+  onSpecialtyChange: (specialties: string[]) => void
 }
 
 export function FilterBar({
@@ -23,6 +28,9 @@ export function FilterBar({
   onSourceChange,
   searchQuery,
   onSearchChange,
+  specialtyStats,
+  selectedSpecialties,
+  onSpecialtyChange,
 }: FilterBarProps) {
   return (
     <div className="card p-4 space-y-4">
@@ -31,13 +39,19 @@ export function FilterBar({
         <input
           id="search-input"
           type="text"
-          placeholder="搜索资讯标题、来源..."
+          placeholder="Search news titles, sources..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           className="input pl-10"
         />
       </div>
-      
+
+      <SpecialtyFilter
+        specialtyStats={specialtyStats}
+        selectedSpecialties={selectedSpecialties}
+        onSpecialtyChange={onSpecialtyChange}
+      />
+
       <SiteFilters
         siteStats={siteStats}
         sourceStats={sourceStats}

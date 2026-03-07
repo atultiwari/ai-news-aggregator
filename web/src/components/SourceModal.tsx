@@ -34,47 +34,47 @@ interface OpmlGroup {
 
 const SITE_INFO: Record<string, { description: string; url: string }> = {
   aihot: {
-    description: 'AI 热点聚合，收集各大平台 AI 相关热门内容',
+    description: 'AI hot topics aggregator, collecting AI-related trending content from major platforms',
     url: 'https://www.aihot.cn/',
   },
   techurls: {
-    description: '技术链接聚合，汇集 Hacker News、Reddit 等技术社区热门文章',
+    description: 'Tech link aggregator, featuring popular articles from Hacker News, Reddit, and other tech communities',
     url: 'https://techurls.com/',
   },
   newsnow: {
-    description: '新闻聚合平台，实时追踪全球科技新闻',
+    description: 'News aggregation platform, real-time tracking of global tech news',
     url: 'https://newsnow.co/',
   },
   tophub: {
-    description: '今日热榜，聚合微博、知乎、B站等 50+ 平台热门内容',
+    description: 'Trending topics aggregator from 50+ platforms',
     url: 'https://tophub.today/',
   },
   buzzing: {
-    description: '热门话题聚合，收集 Reddit、HN、Twitter 等平台讨论',
+    description: 'Trending discussions aggregator from Reddit, HN, Twitter, and other platforms',
     url: 'https://www.buzzing.cc/',
   },
   opmlrss: {
-    description: '自定义 RSS 订阅源，包含 Twitter/X 博主、AI 公司官方账号等',
+    description: 'Custom RSS subscriptions including healthcare AI journals, preprints, and news sources',
     url: '',
   },
   iris: {
-    description: 'Info Flow RSS 信息流，精选科技博客和资讯',
+    description: 'Info Flow RSS feed, curated tech blogs and news',
     url: 'https://info-flow.codelife.cc/',
   },
   zeli: {
-    description: 'Hacker News 24 小时热榜精选',
+    description: 'Hacker News 24-hour hot picks',
     url: 'https://zeli.app/',
   },
   aihubtoday: {
-    description: 'AI 资讯日报，每日精选 AI 领域重要动态',
+    description: 'AI daily news, curated important developments in the AI field',
     url: 'https://aihubtoday.com/',
   },
   aibase: {
-    description: 'AI 产品数据库，收录最新 AI 工具和应用',
+    description: 'AI product database, featuring the latest AI tools and applications',
     url: 'https://www.aibase.com/',
   },
   bestblogs: {
-    description: '优质博客周刊，精选技术博客文章',
+    description: 'Quality blog roundup, curated tech blog articles',
     url: 'https://bestblogs.dev/',
   },
 }
@@ -89,12 +89,12 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
       fetch(`${basePath}data/source-status.json`)
         .then(res => res.json())
         .then(data => setSourceStatus(data))
-        .catch(() => {})
-      
+        .catch(() => { })
+
       fetch(`${basePath}data/opml-feeds.json`)
         .then(res => res.json())
         .then(data => setOpmlGroups(data))
-        .catch(() => {})
+        .catch(() => { })
     }
   }, [isOpen])
 
@@ -117,7 +117,7 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
   const totalRawItems = siteStats.reduce((sum, s) => sum + s.raw_count, 0)
   const totalFilteredItems = siteStats.reduce((sum, s) => sum + s.count, 0)
   const allOpmlFeeds = opmlGroups.flatMap(g => g.feeds)
-  
+
   const sortedSiteStats = [...siteStats].sort((a, b) => {
     if (a.site_id === 'opmlrss') return 1
     if (b.site_id === 'opmlrss') return -1
@@ -126,7 +126,7 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div 
+      <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
@@ -135,10 +135,10 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
           <div>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Rss className="w-5 h-5 text-primary-500" />
-              数据源概览
+              Source Overview
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              聚合 {siteStats.length} 个平台 · {sourceCount} 个订阅源
+              Aggregating {siteStats.length} platforms · {sourceCount} sources
             </p>
           </div>
           <button
@@ -153,37 +153,37 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
           <div className="grid grid-cols-3 gap-3 mb-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{siteStats.length}</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">数据平台</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Platforms</p>
             </div>
             <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{sourceCount}</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">订阅源</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Sources</p>
             </div>
             <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{totalRawItems.toLocaleString()}</p>
-              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">原始资讯</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Raw Articles</p>
             </div>
           </div>
 
           <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-4 mb-6">
             <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
               <Clock className="w-4 h-4" />
-              <span>最近 <strong className="text-slate-900 dark:text-white">{windowHours} 小时</strong> 内，从 <strong className="text-slate-900 dark:text-white">{totalRawItems.toLocaleString()}</strong> 条原始资讯中智能筛选出 <strong className="text-slate-900 dark:text-white">{totalFilteredItems.toLocaleString()}</strong> 条 AI 相关内容</span>
+              <span>In the last <strong className="text-slate-900 dark:text-white">{windowHours} hours</strong>, intelligently filtered <strong className="text-slate-900 dark:text-white">{totalFilteredItems.toLocaleString()}</strong> AI-related articles from <strong className="text-slate-900 dark:text-white">{totalRawItems.toLocaleString()}</strong> raw items</span>
             </div>
           </div>
 
           <h3 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-2">
             <Globe className="w-4 h-4" />
-            数据平台详情
+            Platform Details
           </h3>
-          
+
           <div className="space-y-3">
             {sortedSiteStats.map((stat) => {
               const siteInfo = sourceStatus?.sites.find(s => s.site_id === stat.site_id)
               const isOk = siteInfo?.ok !== false
               const info = SITE_INFO[stat.site_id]
               const isOpml = stat.site_id === 'opmlrss'
-              
+
               return (
                 <div key={stat.site_id} className="rounded-lg border border-slate-200 dark:border-slate-600 overflow-hidden">
                   <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-700/50">
@@ -196,20 +196,20 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
                       <div className="text-left">
                         <span className="font-medium text-slate-900 dark:text-white">{stat.site_name}</span>
                         {isOpml && (
-                          <span className="ml-2 text-xs text-slate-500">({allOpmlFeeds.length} 个订阅)</span>
+                          <span className="ml-2 text-xs text-slate-500">({allOpmlFeeds.length} subscriptions)</span>
                         )}
                       </div>
                     </div>
                     <div className="flex items-center gap-4 text-sm">
                       <span className="text-slate-500 dark:text-slate-400">
-                        原始: <span className="text-slate-700 dark:text-slate-300">{stat.raw_count}</span>
+                        Raw: <span className="text-slate-700 dark:text-slate-300">{stat.raw_count}</span>
                       </span>
                       <span className="text-primary-600 dark:text-primary-400 font-medium">
                         AI: {stat.count}
                       </span>
                     </div>
                   </div>
-                  
+
                   <div className="px-4 pb-4 pt-2 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-600">
                     {info && (
                       <div className="mb-3">
@@ -227,7 +227,7 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
                         )}
                       </div>
                     )}
-                    
+
                     {isOpml && allOpmlFeeds.length > 0 && (
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 mt-2">
                         {allOpmlFeeds.map((feed, idx) => (
@@ -249,9 +249,9 @@ export function SourceModal({ isOpen, onClose, siteStats, sourceCount, windowHou
 
           {sourceStatus?.failed_sites && sourceStatus.failed_sites.length > 0 && (
             <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl">
-              <h4 className="text-sm font-medium text-red-700 dark:text-red-400 mb-2">抓取失败的数据源</h4>
+              <h4 className="text-sm font-medium text-red-700 dark:text-red-400 mb-2">Failed Sources</h4>
               <p className="text-xs text-red-600 dark:text-red-300">
-                {sourceStatus.failed_sites.join('、')}
+                {sourceStatus.failed_sites.join(', ')}
               </p>
             </div>
           )}

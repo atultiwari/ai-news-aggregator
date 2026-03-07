@@ -28,21 +28,20 @@ export function SiteFilters({
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => {
-            Analytics.trackSiteFilter('all', '全部')
+            Analytics.trackSiteFilter('all', 'All')
             onSiteChange('all')
           }}
-          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
-            selectedSite === 'all'
+          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${selectedSite === 'all'
               ? 'bg-primary-500 text-white shadow-md shadow-primary-500/25'
               : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
-          }`}
+            }`}
         >
-          全部
+          All
         </button>
         {activeSites.map((site) => {
           const colorClass = SITE_COLORS[site.site_id] || DEFAULT_BADGE_COLOR
           const isSelected = selectedSite === site.site_id
-          
+
           return (
             <button
               key={site.site_id}
@@ -50,11 +49,10 @@ export function SiteFilters({
                 Analytics.trackSiteFilter(site.site_id, site.site_name)
                 onSiteChange(site.site_id)
               }}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
-                isSelected
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${isSelected
                   ? 'bg-primary-500 text-white shadow-md shadow-primary-500/25'
                   : colorClass + ' hover:opacity-80'
-              }`}
+                }`}
             >
               <span>{site.site_name}</span>
               <span className={`text-xs ${isSelected ? 'text-primary-100' : 'opacity-70'}`}>
@@ -64,25 +62,25 @@ export function SiteFilters({
           )
         })}
       </div>
-      
+
       {selectedSite !== 'all' && sourceStats.length > 0 && (
         <div className="pt-2 border-t border-slate-200 dark:border-slate-700">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">订阅源筛选:</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">Source filter:</span>
             {selectedSource !== 'all' && (
               <button
                 onClick={() => onSourceChange('all')}
                 className="text-xs text-primary-500 hover:text-primary-600 flex items-center gap-0.5 flex-shrink-0"
               >
                 <X className="w-3 h-3" />
-                清除
+                Clear
               </button>
             )}
           </div>
           <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto pr-1 scrollbar-thin">
             {sourceStats.map((source) => {
               const isSelected = selectedSource === source.source
-              
+
               return (
                 <button
                   key={source.source}
@@ -90,11 +88,10 @@ export function SiteFilters({
                     Analytics.trackSourceFilter(source.source)
                     onSourceChange(source.source)
                   }}
-                  className={`px-2 py-1 rounded-md text-xs transition-all duration-200 ${
-                    isSelected
+                  className={`px-2 py-1 rounded-md text-xs transition-all duration-200 ${isSelected
                       ? 'bg-primary-500 text-white'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600'
-                  }`}
+                    }`}
                   title={source.source}
                 >
                   <span className="max-w-[120px] truncate inline-block align-bottom">

@@ -12,7 +12,7 @@ interface StatsCardsProps {
 
 export function StatsCards({ totalItems, sourceCount, windowHours, siteStats, onShowSources }: StatsCardsProps) {
   const totalRawItems = siteStats.reduce((sum, s) => sum + s.raw_count, 0)
-  
+
   return (
     <div className="card p-3 sm:p-4 animate-fade-in">
       <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-2 sm:gap-x-6 sm:gap-y-3">
@@ -23,13 +23,13 @@ export function StatsCards({ totalItems, sourceCount, windowHours, siteStats, on
           <div className="text-xs sm:text-sm min-w-0">
             <span className="text-slate-500 dark:text-slate-400">{windowHours}h</span>
             <span className="mx-1 sm:mx-1.5 font-semibold text-slate-900 dark:text-white">{totalItems.toLocaleString()}</span>
-            <span className="text-slate-500 dark:text-slate-400">条</span>
+            <span className="text-slate-500 dark:text-slate-400">items</span>
           </div>
         </div>
 
         <div className="hidden sm:block w-px h-4 bg-slate-200 dark:bg-slate-700" />
 
-        <button 
+        <button
           onClick={() => {
             Analytics.trackSourcesDetail()
             onShowSources()
@@ -41,10 +41,10 @@ export function StatsCards({ totalItems, sourceCount, windowHours, siteStats, on
           </div>
           <div className="text-xs sm:text-sm min-w-0">
             <span className="font-semibold text-slate-900 dark:text-white">{siteStats.length}</span>
-            <span className="mx-0.5 sm:mx-1 text-slate-500 dark:text-slate-400">平台</span>
+            <span className="mx-0.5 sm:mx-1 text-slate-500 dark:text-slate-400">platforms</span>
             <span className="font-semibold text-slate-900 dark:text-white">{sourceCount}</span>
-            <span className="mx-0.5 sm:mx-1 text-slate-500 dark:text-slate-400">源</span>
-            <span className="hidden sm:inline ml-1 text-primary-500 text-xs">详情 →</span>
+            <span className="mx-0.5 sm:mx-1 text-slate-500 dark:text-slate-400">sources</span>
+            <span className="hidden sm:inline ml-1 text-primary-500 text-xs">details →</span>
           </div>
         </button>
 
@@ -55,9 +55,8 @@ export function StatsCards({ totalItems, sourceCount, windowHours, siteStats, on
             <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500" />
           </div>
           <div className="text-xs sm:text-sm min-w-0">
-            <span className="text-slate-500 dark:text-slate-400">从</span>
+            <span className="text-slate-500 dark:text-slate-400">filtered from</span>
             <span className="mx-1 sm:mx-1.5 font-semibold text-slate-900 dark:text-white">{totalRawItems.toLocaleString()}</span>
-            <span className="text-slate-500 dark:text-slate-400">条筛选</span>
           </div>
         </div>
       </div>

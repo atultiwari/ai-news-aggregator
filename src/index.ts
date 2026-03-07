@@ -19,7 +19,7 @@ import { utcNow, toISOString, parseISO } from './utils/date.js';
 import { normalizeUrl, getHost } from './utils/url.js';
 import { maybeFixMojibake } from './utils/text.js';
 import { makeItemId } from './utils/hash.js';
-import { createAllFetchers, runFetcher, fetchOpmlRss, fetchWaytoagiRecent7d } from './fetchers/index.js';
+import { createAllFetchers, runFetcher, fetchOpmlRss } from './fetchers/index.js';
 import { isAiRelated, dedupeItemsByTitleUrl, normalizeAihubTodayRecords } from './filters/index.js';
 import { addBilingualFields, loadTitleZhCache, cacheToPojo } from './translate/index.js';
 import { writeJson } from './output/index.js';
@@ -36,7 +36,7 @@ function normalizeSourceForDisplay(siteId: string, source: string, url: string):
   if (!src) {
     let host = getHost(url);
     if (host.startsWith('www.')) host = host.slice(4);
-    return host || '未分区';
+    return host || 'Unknown';
   }
   if (siteId === 'buzzing' && src.toLowerCase() === 'buzzing') {
     let host = getHost(url);
@@ -113,7 +113,6 @@ async function main(): Promise<number> {
   const latest24hPath = join(outputDir, 'latest-24h.json');
   const latest7dPath = join(outputDir, 'latest-7d.json');
   const statusPath = join(outputDir, 'source-status.json');
-  const waytoagiPath = join(outputDir, 'waytoagi-7d.json');
   const titleCachePath = join(outputDir, 'title-zh-cache.json');
 
   const archive = await loadArchive(archivePath);
@@ -395,24 +394,17 @@ async function main(): Promise<number> {
   };
 
   console.log('');
-  console.log('📚 Fetching WaytoAGI...');
-  const waytoagiPayload = await fetchWaytoagiRecent7d(now);
-  console.log(`  ✅ WaytoAGI: ${waytoagiPayload.count_7d} updates in last 7 days`);
-
-  console.log('');
   console.log('💾 Writing output files...');
   await writeJson(latest24hPath, latest24hPayload);
   await writeJson(latest7dPath, latest7dPayload);
   await writeJson(archivePath, archivePayload);
   await writeJson(statusPath, statusPayload);
-  await writeJson(waytoagiPath, waytoagiPayload);
   await writeJson(titleCachePath, cacheToPojo(titleCache));
 
   console.log(`  ✅ ${latest24hPath} (${latest24hPayload.total_items} items)`);
   console.log(`  ✅ ${latest7dPath} (${latest7dPayload.total_items} items)`);
   console.log(`  ✅ ${archivePath} (${archive.size} items)`);
   console.log(`  ✅ ${statusPath}`);
-  console.log(`  ✅ ${waytoagiPath}`);
   console.log(`  ✅ ${titleCachePath} (${titleCache.size} entries)`);
   console.log('');
   console.log('🎉 Done!');

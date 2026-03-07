@@ -1,43 +1,43 @@
 import { formatDistanceToNow, format, parseISO, isValid } from 'date-fns'
-import { zhCN } from 'date-fns/locale'
+import { enUS } from 'date-fns/locale'
 
 export function formatRelativeTime(dateString: string | null): string {
-  if (!dateString) return '未知时间'
-  
+  if (!dateString) return 'Unknown time'
+
   try {
     const date = parseISO(dateString)
-    if (!isValid(date)) return '未知时间'
-    
-    return formatDistanceToNow(date, { 
-      addSuffix: true, 
-      locale: zhCN 
+    if (!isValid(date)) return 'Unknown time'
+
+    return formatDistanceToNow(date, {
+      addSuffix: true,
+      locale: enUS
     })
   } catch {
-    return '未知时间'
+    return 'Unknown time'
   }
 }
 
 export function formatDateTime(dateString: string | null): string {
-  if (!dateString) return '未知时间'
-  
+  if (!dateString) return 'Unknown time'
+
   try {
     const date = parseISO(dateString)
-    if (!isValid(date)) return '未知时间'
-    
-    return format(date, 'yyyy-MM-dd HH:mm', { locale: zhCN })
+    if (!isValid(date)) return 'Unknown time'
+
+    return format(date, 'yyyy-MM-dd HH:mm', { locale: enUS })
   } catch {
-    return '未知时间'
+    return 'Unknown time'
   }
 }
 
 export function formatTime(dateString: string | null): string {
   if (!dateString) return ''
-  
+
   try {
     const date = parseISO(dateString)
     if (!isValid(date)) return ''
-    
-    return format(date, 'HH:mm', { locale: zhCN })
+
+    return format(date, 'HH:mm', { locale: enUS })
   } catch {
     return ''
   }

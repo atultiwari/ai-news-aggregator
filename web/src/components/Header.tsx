@@ -62,7 +62,7 @@ export function Header({
                   }}
                 >
                   <h1 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white whitespace-nowrap">
-                    AI 资讯聚合
+                    AI Health News
                   </h1>
                   <Info className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block" />
                 </div>
@@ -99,12 +99,12 @@ export function Header({
                     {isSwitching && timeRange === '7d' && (
                       <Loader2 className="w-3 h-3 animate-spin" />
                     )}
-                    7天
+                    7d
                   </button>
                 </div>
               </div>
               <p className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-                实时追踪 AI 领域最新动态
+                Real-time AI healthcare & pathology news
               </p>
             </div>
           </div>
@@ -113,7 +113,7 @@ export function Header({
             {generatedAt && (
               <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full">
                 <Clock className="w-3.5 h-3.5" />
-                <span>更新于 {formatDateTime(generatedAt)}</span>
+                <span>Updated {formatDateTime(generatedAt)}</span>
                 {windowHours && (
                   <span className="text-slate-400 dark:text-slate-500">· {windowHours}h</span>
                 )}
@@ -125,7 +125,7 @@ export function Header({
                 onShowFavorites?.()
               }}
               className="btn btn-ghost p-1.5 sm:p-2 rounded-lg"
-              title="我的收藏"
+              title="My Favorites"
             >
               <Star className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
@@ -135,7 +135,7 @@ export function Header({
                 onShowHistory?.()
               }}
               className="btn btn-ghost p-1.5 sm:p-2 rounded-lg"
-              title="阅读历史"
+              title="Reading History"
             >
               <History className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
@@ -155,7 +155,7 @@ export function Header({
                 toggleTheme()
               }}
               className="btn btn-ghost p-1.5 sm:p-2 rounded-lg"
-              title={theme === 'light' ? '切换深色模式' : '切换浅色模式'}
+              title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? (
                 <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
