@@ -77,24 +77,45 @@ The aggregator automatically tags articles with relevant medical specialties bas
 
 ---
 
-## 📊 Data Sources
+## 📊 Data Sources (100+ curated feeds)
 
-### Top AI News (11 sources)
-OpenAI Blog · Anthropic Research · Google AI · DeepMind · Hugging Face · MIT Technology Review · VentureBeat AI · The Verge AI · Ars Technica · NVIDIA AI · Microsoft Research
+### Top AI News (11)
+OpenAI · Anthropic · Google AI · DeepMind · Hugging Face · MIT Tech Review · VentureBeat · The Verge · Ars Technica · NVIDIA · Microsoft Research
 
-### AI in Healthcare (10 sources)
+### AI in Healthcare (10)
 Healthcare IT News · STAT News · Fierce Healthcare · Fierce Biotech · MobiHealthNews · Digital Health Today · Health Data Management · The Medical Futurist · Google Health · Microsoft Health
 
-### Pathology & Lab Medicine (7 sources)
+### Pathology & Lab Media (7)
 The Pathologist · CAP Today · Lab Manager · Dark Daily · PathologyOutlines · 360Dx · GenomeWeb
 
-### Research Papers & Journals (18 sources)
-arXiv (AI, CV, ML, q-bio, Image Processing) · bioRxiv · medRxiv · PubMed (AI in Pathology, Healthcare, Digital Pathology, Lab Medicine AI) · Nature Digital Medicine · Nature Medicine · Nature Biotechnology · The Lancet Digital Health · NEJM AI · JAMA Network Open · Journal of Pathology Informatics · Modern Pathology · AJCP · Clinical Chemistry · JCLA · Diagnostic Pathology · BMC Medical Informatics
+### Preprints & PubMed (11)
+arXiv (AI, CV, ML, q-bio, Image Processing) · bioRxiv · medRxiv · PubMed (AI in Pathology, Healthcare, Digital Pathology, Lab Medicine)
 
-### Open Source (3 sources)
+### 📚 Medical Journals (68 across 14 specialties)
+
+| Specialty | Key Journals |
+|:----------|:-------------|
+| **General Medicine** (12) | NEJM, NEJM AI, The Lancet, Lancet Digital Health, BMJ, JAMA, JAMA Network Open, Annals of Internal Medicine, Nature Medicine, Nature Digital Medicine, BMC Medicine, PLOS Medicine |
+| **Oncology** (6) | Lancet Oncology, JAMA Oncology, Nature Cancer, Cancer Research, JCO, British Journal of Cancer |
+| **Cardiology** (5) | JACC, European Heart Journal, Circulation, Lancet Cardiology, Nature Cardiovascular Research |
+| **Neurology** (5) | Lancet Neurology, JAMA Neurology, Nature Neuroscience, Brain, Annals of Neurology |
+| **Surgery** (4) | JAMA Surgery, Annals of Surgery, British Journal of Surgery, Lancet Surgery |
+| **Radiology** (4) | Radiology, Radiology: AI, European Radiology, AJR |
+| **Pathology & Lab** (8) | J Pathology Informatics, Modern Pathology, AJCP, Clinical Chemistry, JCLA, Diagnostic Pathology, J Pathology, Arch Pathology & Lab Med |
+| **Microbiology** (4) | Lancet Infectious Diseases, Clinical Microbiology Reviews, Nature Microbiology, J Clinical Microbiology |
+| **Ophthalmology** (3) | Ophthalmology, JAMA Ophthalmology, BJO |
+| **Pediatrics** (3) | JAMA Pediatrics, Lancet Child & Adolescent Health, Pediatrics |
+| **Psychiatry** (3) | JAMA Psychiatry, Lancet Psychiatry, Nature Mental Health |
+| **Dermatology** (2) | JAMA Dermatology, British Journal of Dermatology |
+| **Genomics** (4) | Nature Biotechnology, Nature Genetics, Genome Biology, Genome Medicine |
+| **Pharmacology** (2) | Nature Reviews Drug Discovery, Clinical Pharmacology & Therapeutics |
+| **Public Health** (3) | Lancet Public Health, Lancet Global Health, BMJ Global Health |
+| **Medical Informatics** (3) | BMC Medical Informatics, J Biomedical Informatics, JAMIA |
+
+### Open Source (3)
 Papers With Code · GitHub Trending · Hugging Face Papers
 
-> See [recommended-sources.md](./recommended-sources.md) for the complete list with descriptions.
+> 📋 See [recommended-sources.md](./recommended-sources.md) for the complete list with descriptions and links.
 
 ---
 
